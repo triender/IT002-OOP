@@ -21,7 +21,7 @@ void NhapHocSinh(HocSinh &A)
 
 float DTB(HocSinh const A)
 {
-    float DTB = (A.DiemToan + A.DiemVan) / 2;
+    float DTB = (A.DiemToan + A.DiemVan) / float(2);
     return DTB;
 }
 
