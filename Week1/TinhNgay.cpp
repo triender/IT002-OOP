@@ -2,32 +2,37 @@
 
 using namespace std;
 
-const int DayInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+const int kDaysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 struct Date
 {
     int day, month, year;
 };
 
-bool isLeapYear(int Nam)
+bool isLeapYear(int year)
 {
-    if (Nam % 4 != 0)
-        return 0;
-    else if (Nam % 100 != 0)
-        return 1;
-    else if (Nam % 400 != 0)
-        return 0;
-    else
-        return 1;
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 }
 
-void inputDate(Date &d){
+void inputDate(Date &d)
+{
     cin >> d.month >> d.year;
+}
+
+void outputDate(const Date d){
+    cout << d.day << "/" << d.month << "/" << d.year;
+}
+
+bool isValidDate(const Date d)
+{
+    if (d.month < 1 || d.month > 12 || d.year < 0)
+        return false;
+    return true;
 }
 
 int DaysInMonth(Date date)
 {
-    int days = DayInMonth[date.month];
+    int days = kDaysInMonth[date.month];
     if (date.month == 2 && isLeapYear(date.year))
         days++;
     return days;
@@ -36,8 +41,12 @@ int DaysInMonth(Date date)
 int main()
 {
     Date date;
-    cout << "Nhap thang va nam (mm/yyyy): ";
-    inputDate(date);
+    do
+    {
+        cout << "Nhap thang va nam (mm/yyyy): ";
+        inputDate(date);
+    } while (!isValidDate(date));
+    
     int days = DaysInMonth(date);
 
     cout << "Thang " << date.month << " nam " << date.year << " co " << days << " ngay." << endl;
