@@ -4,8 +4,6 @@
 #include <iostream>
 using namespace std;
 
-// Giải thuật
-// Greatest common divisor
 int GCD(int a, int b)
 {
     if (a == 0 || b == 0)
@@ -19,129 +17,207 @@ int GCD(int a, int b)
     }
     return a;
 }
-// vét cạn
-// int UCLN(int A, int B)
-// {
-//         if (A == 0 || B == 0)
-//         return A + B;
-//     for (int i = min(A, B); i > 0; --i)
-//     {
-//         if (A % i == 0 && B % i == 0)
-//         return i;
-//     }
-// }
-class PhanSo
-{
-private:
-    int Mau, Tu;
 
-public:
-    int GetMau()
-    {
-        return Mau;
-    }
-    int GetTu()
-    {
-        return Tu;
-    }
-    void SetMau(int Data)
-    {
-        this->Mau = Data;
-    }
-    void SetTu(int Data)
-    {
-        this->Tu = Data;
-    }
-    void RutGon()
-    {
-        int UCLN = GCD(abs(Tu), abs(Mau));
-        Tu /= UCLN;
-        Mau /= UCLN;
-    }
-    int Display()
-    {
-        if (Mau == 0)
-            return 0;
-        if (Mau < 0)
-        {
-            Tu *= -1;
-            Mau *= -1;
-        }
-        if (Mau == 1)
-            cout << Tu;
-        else
-            cout << Tu << "/" << Mau;
-        return 1;
-    }
+struct PhanSo
+{
+    int Tu, Mau;
 };
+
+void RutGon(PhanSo &A)
+{
+    int UCLN = GCD(abs(A.Tu), abs(A.Mau));
+    A.Tu /= UCLN;
+    A.Mau /= UCLN;
+    if (A.Mau < 0)
+    {
+        A.Tu *= -1;
+        A.Mau *= -1;
+    }
+}
+
+void RutGon(PhanSo *&A)
+{
+    int UCLN = GCD(abs(A->Tu), abs(A->Mau));
+    A->Tu /= UCLN;
+    A->Mau /= UCLN;
+    if (A->Mau < 0)
+    {
+        A->Tu *= -1;
+        A->Mau *= -1;
+    }
+}
+
+void Nhap(PhanSo &A)
+{
+    cout << "Nhap tu: ";
+    cin >> A.Tu;
+    do
+    {
+        cout << "Nhap mau (khac 0): ";
+        cin >> A.Mau;
+    } while (!A.Mau);
+    RutGon(A);
+}
+
+void Nhap(PhanSo *&A)
+{
+    cout << "Nhap tu: ";
+    A = new PhanSo;
+    cin >> A->Tu;
+    do
+    {
+        cout << "Nhap mau (khac 0): ";
+        cin >> A->Mau;
+    } while (!A->Mau);
+    RutGon(A);
+}
+
+int Xuat(PhanSo A)
+{
+    if (A.Mau == 0)
+        return 0;
+    if (A.Mau == 1)
+        cout << A.Tu;
+    else
+        cout << A.Tu << "/" << A.Mau;
+    return 1;
+}
+
+int Xuat(PhanSo *A)
+{
+    if (A->Mau == 0)
+        return 0;
+    if (A->Mau == 1)
+        cout << A->Tu;
+    else
+        cout << A->Tu << "/" << A->Mau;
+    return 1;
+}
+
 PhanSo PhanSoLonNhat(PhanSo A, PhanSo B)
 {
-    int MauChung = A.GetMau() * B.GetMau();
-    int Tu_1 = A.GetTu() * B.GetMau();
-    int Tu_2 = B.GetTu() * A.GetMau();
+    int Tu_1 = A.Tu * B.Mau;
+    int Tu_2 = B.Tu * A.Mau;
     if (Tu_1 > Tu_2)
         return A;
-    else
-        return B;
+    return B;
 }
+
+PhanSo *PhanSoLonNhat(PhanSo *A, PhanSo *B)
+{
+    int Tu_1 = A->Tu * B->Mau;
+    int Tu_2 = B->Tu * A->Mau;
+    if (Tu_1 >= Tu_2)
+        return A;
+    return B;
+}
+
 PhanSo Cong(PhanSo A, PhanSo B)
 {
     PhanSo C;
-    C.SetMau(A.GetMau() * B.GetMau());
-    C.SetTu(A.GetTu() * B.GetMau() + B.GetTu() * A.GetMau());
-    C.RutGon();
+    C.Mau = (A.Mau * B.Mau);
+    C.Tu = (A.Tu * B.Mau + B.Tu * A.Mau);
+    RutGon(C);
     return C;
 }
+
+PhanSo *Cong(PhanSo *A, PhanSo *B)
+{
+    PhanSo *C = new PhanSo;
+    C->Mau = (A->Mau * B->Mau);
+    C->Tu = (A->Tu * B->Mau + B->Tu * A->Mau);
+    RutGon(C);
+    return C;
+}
+
 PhanSo Tru(PhanSo A, PhanSo B)
 {
     PhanSo C;
-    C.SetMau(A.GetMau() * B.GetMau());
-    C.SetTu(A.GetTu() * B.GetMau() - B.GetTu() * A.GetMau());
-    C.RutGon();
+    C.Mau = (A.Mau * B.Mau);
+    C.Tu = (A.Tu * B.Mau - B.Tu * A.Mau);
+    RutGon(C);
     return C;
 }
+
+PhanSo *Tru(PhanSo *A, PhanSo *B)
+{
+    PhanSo *C = new PhanSo;
+    C->Mau = (A->Mau * B->Mau);
+    C->Tu = (A->Tu * B->Mau - B->Tu * A->Mau);
+    RutGon(C);
+    return C;
+}
+
 PhanSo Nhan(PhanSo A, PhanSo B)
 {
     PhanSo C;
-    C.SetMau(A.GetMau() * B.GetMau());
-    C.SetTu(A.GetTu() * B.GetTu());
-    C.RutGon();
+    C.Mau = (A.Mau * B.Mau);
+    C.Tu = (A.Tu * B.Tu);
+    RutGon(C);
     return C;
 }
+
+PhanSo *Nhan(PhanSo *A, PhanSo *B)
+{
+    PhanSo *C = new PhanSo;
+    C->Mau = (A->Mau * B->Mau);
+    C->Tu = (A->Tu * B->Tu);
+    RutGon(C);
+    return C;
+}
+
 PhanSo Chia(PhanSo A, PhanSo B)
 {
     PhanSo C;
-    C.SetMau(A.GetMau() * B.GetTu());
-    C.SetTu(A.GetTu() * B.GetMau());
-    C.RutGon();
+    C.Mau = (A.Mau * B.Tu);
+    if (C.Mau == 0)
+    {
+        cout << "Khong chia duoc.";
+        return {0, 0};
+    }
+    C.Tu = (A.Tu * B.Mau);
+    RutGon(C);
     return C;
 }
+
+PhanSo *Chia(PhanSo *A, PhanSo *B)
+{
+    PhanSo *C = new PhanSo;
+    C->Mau = (A->Mau * B->Tu);
+    if (C->Mau == 0)
+    {
+        cout << "Khong chia duoc->";
+        return nullptr;
+    }
+    C->Tu = (A->Tu * B->Mau);
+    RutGon(C);
+    return C;
+}
+
 int main()
 {
-    PhanSo A, B;
+    PhanSo *A, *B;
+    Nhap(A);
+    Xuat(A);
+    cout << endl;
 
-    A.SetTu(-22);
-    A.SetMau(-4);
-    A.RutGon();
-    A.Display();
-    // B.SetTu(1);
-    // B.SetMau(2);
+    Nhap(B);
+    Xuat(B);
 
-    // A.RutGon();
-    // B.RutGon();
-    // cout << "Phan so dau tien la: ";
-    // A.Display();
-    // cout << "\nPhan so thu hai la: ";
-    // B.Display();
-    // cout << "\nPhan so lon nhat la: ";
-    // PhanSoLonNhat(A, B).Display();
-    // cout << "\nKet qua cong phan so la: ";
-    // Cong(A, B).Display();
-    // cout << "\nKet qua tru phan so la: ";
-    // Tru(A, B).Display();
-    // cout << "\nKet qua nhan phan so la: ";
-    // Nhan(A, B).Display();
-    // cout << "\nKet qua chia phan so la: ";
-    // Chia(A, B).Display();
+    cout << "\nPhan so thu nhat la: ";
+    Xuat(A);
+    cout << "\nPhan so thu hai la: ";
+    Xuat(B);
+
+    cout << "\nPhan so lon nhat la: ";
+    Xuat(PhanSoLonNhat(A, B));
+    cout << "\nKet qua cong phan so la: ";
+    Xuat(Cong(A, B));
+    cout << "\nKet qua tru phan so la: ";
+    Xuat(Tru(A, B));
+    cout << "\nKet qua nhan phan so la: ";
+    Xuat(Nhan(A, B));
+    cout << "\nKet qua chia phan so la: ";
+    Xuat(Chia(A, B));
     return 0;
 }
