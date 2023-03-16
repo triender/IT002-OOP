@@ -21,12 +21,22 @@ private:
     int Tu, Mau;
 
 public:
-    PhanSo() {}
-    PhanSo(int Tu, int Mau)
+    void rutGon()
+    {
+        int UCLN = GCD(abs(Tu), abs(Mau));
+        Tu /= UCLN;
+        Mau /= UCLN;
+        if (Mau < 0)
+        {
+            Tu *= -1;
+            Mau *= -1;
+        }
+    }
+    PhanSo(int Tu = 0, int Mau = 1)
     {
         this->Tu = Tu;
         this->Mau = Mau;
-        this->rutGon();
+        rutGon();
     }
 
     int getTu() const { return Tu; }
@@ -39,7 +49,7 @@ public:
     void setMau(int Mau)
     {
         this->Mau = Mau;
-        this->rutGon();
+        rutGon();
     }
 
     void nhap()
@@ -66,84 +76,66 @@ public:
             cout << Tu << "/" << Mau;
     }
 
-    PhanSo cong(const PhanSo ps)
+    PhanSo cong(const PhanSo ps) const
     {
-        PhanSo ketQua;
-        ketQua.Tu = this->Tu * ps.Mau + this->Mau * ps.Tu;
-        ketQua.Mau = this->Mau * ps.Mau;
-        ketQua.rutGon();
-        return ketQua;
+        return PhanSo(this->Tu * ps.Mau + this->Mau * ps.Tu, this->Mau * ps.Mau);
     }
 
-    PhanSo tru(const PhanSo ps)
+    PhanSo tru(const PhanSo ps) const
     {
-        PhanSo ketQua;
-        ketQua.Tu = this->Tu * ps.Mau - this->Mau * ps.Tu;
-        ketQua.Mau = this->Mau * ps.Mau;
-        ketQua.rutGon();
-        return ketQua;
+        return PhanSo(this->Tu * ps.Mau - this->Mau * ps.Tu, this->Mau * ps.Mau);
     }
 
-    PhanSo nhan(const PhanSo ps)
+    PhanSo nhan(const PhanSo ps) const
     {
-        PhanSo ketQua;
-        ketQua.Tu = this->Tu * ps.Tu;
-        ketQua.Mau = this->Mau * ps.Mau;
-        ketQua.rutGon();
-        return ketQua;
+        return PhanSo(this->Tu * ps.Tu, this->Mau * ps.Mau);
     }
 
-    PhanSo chia(const PhanSo ps)
+    PhanSo chia(const PhanSo ps) const
     {
-        PhanSo ketQua;
-        ketQua.Tu = this->Tu * ps.Mau;
-        ketQua.Mau = this->Mau * ps.Tu;
-        ketQua.rutGon();
-        return ketQua;
+        return PhanSo(this->Tu * ps.Mau, this->Mau * ps.Tu);
     }
 
-    PhanSo operator+(const PhanSo ps)
+    int lonHon(const PhanSo ps) const
     {
-        PhanSo ketQua;
-        ketQua.Tu = this->Tu * ps.Mau + this->Mau * ps.Tu;
-        ketQua.Mau = this->Mau * ps.Mau;
-        ketQua.rutGon();
-        return ketQua;
+        return ((this->Tu * ps.getMau()) > (this->Mau * ps.getTu())) ? 1 : 0;
     }
 
-    PhanSo operator-(const PhanSo ps)
+    int beHon(const PhanSo ps) const
     {
-        PhanSo ketQua;
-        ketQua.Tu = this->Tu * ps.Mau - this->Mau * ps.Tu;
-        ketQua.Mau = this->Mau * ps.Mau;
-        ketQua.rutGon();
-        return ketQua;
+        return (this->Tu * ps.getMau()) < (this->Mau * ps.getTu());
     }
 
-    PhanSo operator*(const PhanSo ps)
+    PhanSo operator+(const PhanSo ps) const
     {
-        PhanSo ketQua;
-        ketQua.Tu = this->Tu * ps.Tu;
-        ketQua.Mau = this->Mau * ps.Mau;
-        ketQua.rutGon();
-        return ketQua;
+        return PhanSo(this->Tu * ps.Mau + this->Mau * ps.Tu, this->Mau * ps.Mau);
     }
 
-    PhanSo operator/(const PhanSo ps)
+    PhanSo operator-(const PhanSo ps) const
     {
-        PhanSo ketQua;
-        ketQua.Tu = this->Tu * ps.Mau;
-        ketQua.Mau = this->Mau * ps.Tu;
-        ketQua.rutGon();
-        return ketQua;
+        return PhanSo(this->Tu * ps.Mau - this->Mau * ps.Tu, this->Mau * ps.Mau);
     }
 
-    void rutGon()
+    PhanSo operator*(const PhanSo ps) const
     {
-        int UCLN = GCD(abs(Tu), abs(Mau));
-        Tu /= UCLN;
-        Mau /= UCLN;
+        return PhanSo(this->Tu * ps.Tu, this->Mau * ps.Mau);
     }
+
+    PhanSo operator/(const PhanSo ps) const
+    {
+        return PhanSo(this->Tu * ps.Mau, this->Mau * ps.Tu);
+    }
+
+    int operator>(const PhanSo ps) const
+    {
+        return (this->Tu * ps.getMau()) > (this->Mau * ps.getTu());
+    }
+
+    int operator<(const PhanSo ps) const
+    {
+        return (this->Tu * ps.getMau()) < (this->Mau * ps.getTu());
+    }
+
 };
 
 int main()
@@ -193,5 +185,11 @@ int main()
     cout << "\nThuong 2 phan so: ";
     thuong.xuat();
 
+    cout << "\nPhan so lon hon la: ";
+    if (ps1 > *ps2)
+        ps1.xuat();
+    else 
+        ps2->xuat();
+    
     return 0;
 }
