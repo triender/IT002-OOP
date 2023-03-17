@@ -1,6 +1,4 @@
-#include <iostream>
-#include <cmath>
-#include <cstdlib>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -9,58 +7,73 @@ int GetRandom()
     return (rand() % 3) + 1;
 }
 
-void GetUserInput(int Input)
+int GetUserChoice()
 {
-    cout << "Moi ban nhap";
-    cin >> Input;
+    int choice;
+    cout << "Moi ban nhap lua chon tu 1 den 3: ";
+    do
+    {
+        cin >> choice;
+    } while (choice < 1 || choice > 3);
+
+    return choice;
+}
+
+void ShowChoice(int choice)
+{
+    if (choice == 1)
+        cout << "lua chon cua ban la Dam\n";
+    else if (choice == 2)
+        cout << "lua chon cua ban la La\n";
+    else
+        cout << "lua chon cua ban la Keo\n";
+}
+
+void ShowComputerChoice(int choice)
+{
+    if (choice == 1)
+        cout << "Lua chon cua may la Dam\n";
+    else if (choice == 2)
+        cout << "Lua chon cua may la La\n";
+    else
+        cout << "Lua chon cua may la Keo\n";
+}
+
+void DetermineWinner(int userChoice, int computerChoice)
+{
+    if (userChoice == computerChoice)
+        cout << "Ban da hoa\n";
+    else if ((userChoice == 1 && computerChoice == 3) || (userChoice == 2 && computerChoice == 1) || (userChoice == 3 && computerChoice == 2))
+        cout << "Ban da thang\n";
+    else
+        cout << "Ban da thua\n";
+}
+
+bool PlayAgain()
+{
+    char response;
+    cout << "Choi tiep bam Y, bam bat ky de thoat: ";
+    cin >> response;
+
+    return (response == 'Y' || response == 'y');
 }
 
 int main()
 {
-    bool Run = true;
-    int runcheck;
+    srand(time(0)); 
+    bool playAgain = true;
 
-    while (Run)
+    while (playAgain)
     {
-        cout << "1 la Dam\n";
-        cout << "2 la La\n";
-        cout << "3 la keo\n";
-        cout << "Moi ban nhap lua chon tu 1 den 3: ";
-        int ComputerChoice = GetRandom();
-        // CheckInput
-        int YourChoice;
-        do
-        {
-            cin >> YourChoice;
-        } while (YourChoice < 1 && YourChoice >);
+        int computerChoice = GetRandom();
+        int userChoice = GetUserChoice();
 
-        // Show User choice
-        if (YourChoice == 1)
-            cout << "lua chon cua ban la Dam\n";
-        else if (YourChoice == 2)
-            cout << "lua chon cua ban la La\n";
-        else
-            cout << "lua chon cua ban la Keo\n";
+        ShowChoice(userChoice);
+        ShowComputerChoice(computerChoice);
+        DetermineWinner(userChoice, computerChoice);
 
-        // Show computer choice
-        if (ComputerChoice == 1)
-            cout << "Lua chon cua may la Dam\n";
-        else if (ComputerChoice == 2)
-            cout << "Lua chon cua may la La\n";
-        else
-            cout << "Lua chon cua may la Keo\n";
-
-        // Determine Who is the Winner
-        if (YourChoice == ComputerChoice)
-            cout << "Ban da hoa\n";
-        else if ((YourChoice == 1 && ComputerChoice == 3) || (YourChoice == 2 && ComputerChoice == 1) || (YourChoice == 3 && ComputerChoice == 2))
-            cout << "Ban da thang\n";
-        else
-            cout << "Ban da thua\n";
-
-        cout << "Choi tiep bam 1: ";
-        cin >> runcheck;
-        (runcheck == 1) ? Run = true : Run = false;
+        playAgain = PlayAgain();
     }
+
     return 0;
 }
