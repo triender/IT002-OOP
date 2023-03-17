@@ -8,7 +8,7 @@ private:
 
 public:
     SoPhuc() {}
-    SoPhuc(int thuc, int ao)
+    SoPhuc(int thuc = 0, int ao = 0)
     {
         this->thuc = thuc;
         this->ao = ao;
@@ -51,19 +51,13 @@ public:
 
     SoPhuc nhan(const SoPhuc sp) const
     {
-        SoPhuc ketQua;
-        ketQua.thuc = this->thuc * sp.thuc - this->ao * sp.ao;
-        ketQua.ao = this->thuc * sp.ao + this->ao * sp.thuc;
-        return ketQua;
+        return SoPhuc(this->thuc * sp.thuc - this->ao * sp.ao, this->thuc * sp.ao + this->ao * sp.thuc);
     }
 
     SoPhuc chia(const SoPhuc sp) const
     {
-        SoPhuc ketQua;
         int mau = sp.thuc * sp.thuc + sp.ao * sp.ao;
-        ketQua.thuc = (this->thuc * sp.thuc + this->ao * sp.ao) / mau;
-        ketQua.ao = (this->ao * sp.thuc - this->thuc * sp.ao) / mau;
-        return ketQua;
+        return SoPhuc((this->thuc * sp.thuc + this->ao * sp.ao) / mau, (this->ao * sp.thuc - this->thuc * sp.ao) / mau);
     }
 
     SoPhuc operator+(const SoPhuc sp) const
@@ -78,19 +72,13 @@ public:
 
     SoPhuc operator*(const SoPhuc &sp) const
     {
-        SoPhuc ketQua;
-        ketQua.thuc = this->thuc * sp.thuc - this->ao * sp.ao;
-        ketQua.ao = this->thuc * sp.ao + this->ao * sp.thuc;
-        return ketQua;
+        return SoPhuc(this->thuc * sp.thuc - this->ao * sp.ao, this->thuc * sp.ao + this->ao * sp.thuc);
     }
 
     SoPhuc operator/(const SoPhuc &sp) const
     {
-        SoPhuc ketQua;
-        float mau = sp.thuc * sp.thuc + sp.ao * sp.ao;
-        ketQua.thuc = (this->thuc * sp.thuc + this->ao * sp.ao) / mau;
-        ketQua.ao = (this->ao * sp.thuc - this->thuc * sp.ao) / mau;
-        return ketQua;
+        int mau = sp.thuc * sp.thuc + sp.ao * sp.ao;
+        return SoPhuc((this->thuc * sp.thuc + this->ao * sp.ao) / mau, (this->ao * sp.thuc - this->thuc * sp.ao) / mau);
     }
 };
 
