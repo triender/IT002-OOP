@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 int GetRandom()
@@ -10,7 +9,10 @@ int GetRandom()
 int GetUserChoice()
 {
     int choice;
-    cout << "Moi ban nhap lua chon tu 1 den 3: ";
+    cout << "Moi ban nhap lua chon tu 1 den 3:\n";
+    cout << "1. Dam\n";
+    cout << "2. La\n";
+    cout << "3. Keo\n";
     do
     {
         cin >> choice;
@@ -60,7 +62,7 @@ bool PlayAgain()
 
 int main()
 {
-    srand(time(0)); 
+    srand(time(NULL)); 
     bool playAgain = true;
 
     while (playAgain)

@@ -1,0 +1,73 @@
+1. Xây dựng class Diem: 
+
+    – Thuộc tính:
+
+Tọa độ x, y.
+    – Phương thức:
+
+Khởi tạo điểm 
+Nhập điểm
+Xuất điểm
+Di chuyển điểm
+Kiểm tra 2 điểm có tọa độ trùng nhau không
+Tính khoảng cách giữa 2 điểm
+Lấy đối xứng 1 điểm qua gốc tọa độ
+Tính chu vi tam giác qua 3 điểm.
+Tính diện tích tam giác qua 3 điểm.
+
+2. Xây dựng class GiaiPTBac1: 
+
+    – Thuộc tính:
+
+2 hệ số a, b.
+    – Phương thức: 
+
+Khởi tạo 2 hệ số a, b đều = 0
+Khởi tao hệ số a=0, b tùy ý
+Khởi tạo hệ số a, b tùy ý
+Nhập 2 hệ số a, b
+Giải phương trình
+Xuất phương trình
+
+3. Xây dựng class BangCuuChuong: 
+
+    – Thuộc tính:
+
+2 số nguyên: m, n.
+    – Phương thức: 
+
+Các phương thức khởi tạo m, n từ 2 đến 9
+Nhập m, n
+In bảng cửu chương m
+In bảng cửu chương từ m đến n
+In bảng cửu chương tổng hợp từ 2 đến 9
+
+4. Xây dựng class TamGiac: 
+
+    – Thuộc tính:
+
+Độ dài 3 cạnh tam giác.
+    – Phương thức: 
+
+Khởi tạo tam giác
+Nhập tam giác
+Xuất tam giác
+Kiểm tra 3 cạnh tam giác hợp lệ không?
+Phân loại tam giác
+Tính chu vi tam giác
+Tính diện tích tam giác
+
+5. Xây dựng class HocSinh: 
+
+   – Thuộc tính:
+
+Họ tên học sinh
+Điểm Văn, Toán.
+    – Phương thức: 
+
+Khởi tạo học sinh tên rỗng, 2 điểm văn, toán đều = 0
+Khởi tạo học sinh tùy ý
+Nhập học sinh
+Xuất học sinh
+Tính ĐTB của học sinh
+Xếp loại học sinh
