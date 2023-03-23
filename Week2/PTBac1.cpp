@@ -35,18 +35,45 @@ public:
 };
 
 int main() {
-    GiaiPTBac1 pt1;  // Khởi tạo phương trình 0x + 0 = 0
-    pt1.output();  // Xuất phương trình
-    pt1.solve();  // Giải phương trình
+    int choice = 0;
+    while (choice != 4) {
+        cout << "Nhap lua chon cua ban:" << endl;
+        cout << "1. Giai phuong trinh 0x + 0 = 0" << endl;
+        cout << "2. Giai phuong trinh 2x - 3 = 0" << endl;
+        cout << "3. Nhap va giai phuong trinh" << endl;
+        cout << "4. Thoat chuong trinh" << endl;
+        cin >> choice;
 
-    GiaiPTBac1 pt2(2, -3);  // Khởi tạo phương trình 2x - 3 = 0
-    pt2.output();
-    pt2.solve();
-
-    GiaiPTBac1 pt3;
-    pt3.input();  // Nhập 2 hệ số a, b
-    pt3.output();
-    pt3.solve();
+        switch (choice) {
+            case 1: {
+                GiaiPTBac1 pt;
+                pt.output();
+                pt.solve();
+                break;
+            }
+            case 2: {
+                GiaiPTBac1 pt(2, -3);
+                pt.output();
+                pt.solve();
+                break;
+            }
+            case 3: {
+                GiaiPTBac1 pt;
+                pt.input();
+                pt.output();
+                pt.solve();
+                break;
+            }
+            case 4: {
+                cout << "Chuong trinh ket thuc." << endl;
+                break;
+            }
+            default: {
+                cout << "Lua chon khong hop le, vui long chon lai." << endl;
+                break;
+            }
+        }
+    }
 
     return 0;
 }
