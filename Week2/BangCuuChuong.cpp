@@ -57,7 +57,7 @@ public:
 
 int main()
 {
-    int m = -1, n = -1, choice;
+    int m, n, choice;
     do
     {
         cout << "MENU:\n";
@@ -72,14 +72,14 @@ int main()
         {
         case 1:
         {
-            BangCuuChuong bcc(m, n);
+            BangCuuChuong bcc;
             bcc.InBangCuuChuong();
             break;
         }
         case 2:
         {
             cin >> m;
-            BangCuuChuong bcc(m, n);
+            BangCuuChuong bcc(m);
             bcc.InBangCuuChuong();
             break;
         }
