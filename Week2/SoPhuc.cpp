@@ -7,7 +7,6 @@ private:
     int thuc, ao;
 
 public:
-    SoPhuc() {}
     SoPhuc(int thuc = 0, int ao = 0)
     {
         this->thuc = thuc;
