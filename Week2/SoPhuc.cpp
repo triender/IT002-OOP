@@ -7,16 +7,16 @@ private:
     double thuc, ao;
 
 public:
-    SoPhuc(int thuc = 0, int ao = 0)
+    SoPhuc(double thuc = 0, double ao = 0)
     {
         this->thuc = thuc;
         this->ao = ao;
     }
 
-    int getThuc() const { return thuc; }
-    int getAo() const { return ao; }
-    void setThuc(int thuc) { this->thuc = thuc; }
-    void setAo(int ao) { this->ao = ao; }
+    double getThuc() const { return thuc; }
+    double getAo() const { return ao; }
+    void setThuc(double thuc) { this->thuc = thuc; }
+    void setAo(double ao) { this->ao = ao; }
 
     void nhap()
     {
@@ -55,7 +55,7 @@ public:
 
     SoPhuc chia(const SoPhuc sp) const
     {
-        int mau = sp.thuc * sp.thuc + sp.ao * sp.ao;
+        double mau = sp.thuc * sp.thuc + sp.ao * sp.ao;
         return SoPhuc((this->thuc * sp.thuc + this->ao * sp.ao) / mau, (this->ao * sp.thuc - this->thuc * sp.ao) / mau);
     }
 
@@ -76,7 +76,7 @@ public:
 
     SoPhuc operator/(const SoPhuc &sp) const
     {
-        int mau = sp.thuc * sp.thuc + sp.ao * sp.ao;
+        double mau = sp.thuc * sp.thuc + sp.ao * sp.ao;
         return SoPhuc((this->thuc * sp.thuc + this->ao * sp.ao) / mau, (this->ao * sp.thuc - this->thuc * sp.ao) / mau);
     }
 };
