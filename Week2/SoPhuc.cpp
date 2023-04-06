@@ -4,7 +4,7 @@ using namespace std;
 class SoPhuc
 {
 private:
-    int thuc, ao;
+    double thuc, ao;
 
 public:
     SoPhuc(int thuc = 0, int ao = 0)
