@@ -25,7 +25,7 @@ public:
 
     friend istream &operator>>(istream &is, DIEM2C &X);
     friend ostream &operator<<(ostream &os, const DIEM2C &X);
-    virtual DIEM2C &operator=(const DIEM2C &X);
+    DIEM2C &operator=(const DIEM2C &X);
 
     void dichX(double dx);
     void dichY(double dy);
