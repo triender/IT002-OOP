@@ -12,11 +12,16 @@ public:
     DIEM3C(double xValue = 0, double yValue = 0, double zValue = 0);
     DIEM3C(const DIEM3C &other);
 
+    double getZ() const;
+    void setZ(double);
+    
     ~DIEM3C() = default;
 
     friend istream &operator>>(istream &is, DIEM3C &X);
     friend ostream &operator<<(ostream &os, const DIEM3C &X);
-    friend DIEM3C &operator=(const DIEM3C &X);
+    DIEM3C &operator=(const DIEM3C &X);
+
+    void dichXYZ(double dx = 0, double dy = 0, double dz = 0);
 
     double khoangCach(const DIEM3C &p = DIEM3C(0, 0, 0)) const;
     int kiemTraTrung(const DIEM3C &p2);

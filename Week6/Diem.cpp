@@ -21,7 +21,7 @@ istream &operator>>(istream &is, DIEM2C &X)
 }
 ostream &operator<<(ostream &os, const DIEM2C &X)
 {
-    os << "(" << ((x == -0) ? 0 : x) << ", " << ((y == -0) ? 0 : y) << ")";
+    os << "(" << ((X.x == -0) ? 0 : X.x) << ", " << ((X.y == -0) ? 0 : X.y) << ")";
     return os;
 }
 
@@ -45,12 +45,12 @@ void DIEM2C::dichXY(double dx, double dy)
     y += dy;
 }
 
-void DIEM2C::quay(double goc, const double &tamX, const double &tamY)
-{
-    double rad = goc * M_PI / 180.0;
-    x = cos(rad) * (x - tamX) - sin(rad) * (y - tamY) + tamX;
-    y = sin(rad) * (x - tamX) + cos(rad) * (y - tamY) + tamY;
-}
+// void DIEM2C::quay(double goc, const double &tamX, const double &tamY)
+// {
+//     double rad = goc * M_PI / 180.0;
+//     x = cos(rad) * (x - tamX) - sin(rad) * (y - tamY) + tamX;
+//     y = sin(rad) * (x - tamX) + cos(rad) * (y - tamY) + tamY;
+// }
 
 double DIEM2C::khoangCach(const DIEM2C &p /*= DIEM2C(0, 0)*/) const
 {
@@ -90,34 +90,4 @@ bool kiemTraTamGiac(const DIEM2C &p1, const DIEM2C &p2, const DIEM2C &p3)
     double b = p1.khoangCach(p3);
     double c = p2.khoangCach(p3);
     return (a + b > c) && (a + c > b) && (b + c > a);
-}
-
-int DIEMMAU::getR() const { return r; }
-int DIEMMAU::getG() const { return g; }
-int DIEMMAU::getB() const { return b; }
-void DIEMMAU::setR(int newR) { r = newR; }
-void DIEMMAU::setG(int newG) { g = newG; }
-void DIEMMAU::setB(int newB) { b = newB; }
-void DIEMMAU::setRGB(int newR, int newG, int newB)
-{
-    r = newR;
-    g = newG;
-    b = newB;
-}
-
-istream &operator>>(istream &is, DIEMMAU &X)
-{
-    is >> X.x >> X.y >> X.r >> X.g >> X.b;
-    return is;
-}
-
-ostream &operator<<(ostream &os, const DIEMMAU &X)
-{
-    os << X.x << " " << X.y << " " << X.r << " " << X.g << " " << X.b;
-    return os;
-}
-
-bool DIEMMAU::kiemTraTrung(const DIEMMAU &p2) const
-{
-    return (getX() == p2.getX() && getY() == p2.getY() && r == p2.r && g == p2.g && b == p2.b);
 }

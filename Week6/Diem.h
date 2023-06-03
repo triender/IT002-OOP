@@ -34,7 +34,7 @@ public:
 
     virtual double khoangCach(const DIEM2C &p = DIEM2C(0, 0)) const;
     virtual int kiemTraTrung(const DIEM2C &p2);
-    virtual DIEM2C layDoiXung() const;
+    DIEM2C layDoiXung() const;
     virtual double tinhChuVi(const DIEM2C &p2, const DIEM2C &p3) const;
     virtual double tinhDienTich(const DIEM2C &p2, const DIEM2C &p3) const;
 };
